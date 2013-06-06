@@ -6,7 +6,7 @@ https://github.com/seratch/scalikejdbc
 
 ## Try features!
 
-- SQLInterpolation
+### SQLInterpolation
 
 `sbt console` and do like this:
 
@@ -16,7 +16,7 @@ https://github.com/seratch/scalikejdbc
 val results = sql"select * from company".map(_.toMap).list.apply()
 ```
 
-- Query DSL
+### Query DSL
 
 Example:
 
@@ -36,18 +36,18 @@ seratch.company
 seratch.skills
 ```
 
-- mapper-generator
+### scalikejdbc-gen
 
 ```sh
 sbt
 scalikejdbc-gen company
 ```
 
-- config
+### config reader
 
 `DBs.setupAll` loads `src/main/resources/applicaiton.conf`.
 
-- play plugin
+### play plugin
 
 ```sh
 sbt 
