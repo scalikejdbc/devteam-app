@@ -11,19 +11,17 @@ import devteam.model._
 object Programmers extends Controller with Json4s {
 
   implicit val formats = DefaultFormats ++ JodaTimeSerializers.all
- 
+
   def all = Action {
-   Ok(Extraction.decompose(Programmer.findAll))
+    Ok(Extraction.decompose(Programmer.findAll))
   }
 
   def show(id: Long) = Action {
-   Programmer.find(id).map{ programmer =>
-     Ok(Extraction.decompose(programmer))
-   }.getOrElse(NotFound)
+    Programmer.find(id).map(programmer => Ok(Extraction.decompose(programmer))) getOrElse NotFound
   }
 
-  val programmerForm = Form(tuple("name" -> text, "companyId" -> optional(longNumber)))
- 
+  private val programmerForm = Form(tuple("name" -> text, "companyId" -> optional(longNumber)))
+
   def create = Action { implicit req =>
     val (name, companyId) = programmerForm.bindFromRequest.get
     val programmer = Programmer.create(name = name, companyId = companyId)
@@ -31,26 +29,26 @@ object Programmers extends Controller with Json4s {
   }
 
   def addSkill(programmerId: Long, skillId: Long) = Action {
-    Programmer.find(programmerId).map { programmer => 
+    Programmer.find(programmerId).map { programmer =>
       try {
-        Skill.find(skillId).map { skill => programmer.addSkill(skill) }
+        Skill.find(skillId).map(skill => programmer.addSkill(skill))
         Ok
       } catch { case e: Exception => Conflict }
-    }.getOrElse(NotFound)
+    } getOrElse NotFound
   }
 
   def deleteSkill(programmerId: Long, skillId: Long) = Action {
     Programmer.find(programmerId).map { programmer =>
-      Skill.find(skillId).map { skill => programmer.deleteSkill(skill) }
+      Skill.find(skillId).map(skill => programmer.deleteSkill(skill))
       Ok
-    }.getOrElse(NotFound)
+    } getOrElse NotFound
   }
 
   def delete(id: Long) = Action {
-   Programmer.find(id).map{ programmer =>
-     programmer.destroy()
-     NoContent
-   }.getOrElse(NotFound)
+    Programmer.find(id).map { programmer =>
+      programmer.destroy()
+      NoContent
+    } getOrElse NotFound
   }
- 
+
 }

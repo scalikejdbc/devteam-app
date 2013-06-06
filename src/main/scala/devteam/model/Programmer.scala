@@ -15,19 +15,18 @@ case class Programmer(
   def save()(implicit session: DBSession = Programmer.autoSession): Programmer = Programmer.save(this)(session)
   def destroy()(implicit session: DBSession = Programmer.autoSession): Unit = Programmer.destroy(id)(session)
 
-  val (ps, p, s) = (ProgrammerSkill.ps, Programmer.p, Skill.s)
+  private val (ps, p, s) = (ProgrammerSkill.ps, Programmer.p, Skill.s)
+  private val column = ProgrammerSkill.column
 
   def addSkill(skill: Skill)(implicit session: DBSession = Programmer.autoSession): Unit = withSQL {
-    val column = ProgrammerSkill.column
     insert
       .into(ProgrammerSkill).columns(column.programmerId, column.skillId)
       .values(id, skill.id)
   }.update.apply()
 
   def deleteSkill(skill: Skill)(implicit session: DBSession = Programmer.autoSession): Unit = withSQL {
-    val c = ProgrammerSkill.column
     delete.from(ProgrammerSkill)
-      .where.eq(c.programmerId, id).and.eq(c.skillId, skill.id)
+      .where.eq(column.programmerId, id).and.eq(column.skillId, skill.id)
   }.update.apply()
 
 }
@@ -60,9 +59,7 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
 
   // SyntaxProvider objects
   val p = Programmer.syntax("p")
-  val c = Company.c
-  val s = Skill.s
-  val ps = ProgrammerSkill.ps
+  private val (c, s, ps) = (Company.c, Skill.s, ProgrammerSkill.ps)
 
   val autoSession = AutoSession
 
@@ -145,7 +142,8 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
 
   def save(m: Programmer)(implicit session: DBSession = autoSession): Programmer = {
     withSQL {
-      update(Programmer).set(column.name -> m.name, column.companyId -> m.companyId)
+      update(Programmer)
+        .set(column.name -> m.name, column.companyId -> m.companyId)
         .where.eq(column.id, m.id).and.isNull(column.deletedAt)
     }.update.apply()
     m

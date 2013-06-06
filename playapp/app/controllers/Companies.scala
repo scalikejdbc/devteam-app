@@ -11,19 +11,17 @@ import devteam.model._
 object Companies extends Controller with Json4s {
 
   implicit val formats = DefaultFormats ++ JodaTimeSerializers.all
- 
+
   def all = Action {
-   Ok(Extraction.decompose(Company.findAll))
+    Ok(Extraction.decompose(Company.findAll))
   }
 
   def show(id: Long) = Action {
-   Company.find(id).map{ company =>
-     Ok(Extraction.decompose(company))
-   }.getOrElse(NotFound)
+    Company.find(id).map { company => Ok(Extraction.decompose(company)) } getOrElse NotFound
   }
 
-  val companyForm = Form(tuple("name" -> text, "url" -> text))
- 
+  private val companyForm = Form(tuple("name" -> text, "url" -> text))
+
   def create = Action { implicit req =>
     val (name, url) = companyForm.bindFromRequest.get
     val company = Company.create(name = name, url = if (url.isEmpty) None else Some(url))
@@ -31,10 +29,10 @@ object Companies extends Controller with Json4s {
   }
 
   def delete(id: Long) = Action {
-   Company.find(id).map{ company =>
-     company.destroy()
-     NoContent
-   }.getOrElse(NotFound)
+    Company.find(id).map { company =>
+      company.destroy()
+      NoContent
+    } getOrElse NotFound
   }
- 
+
 }
