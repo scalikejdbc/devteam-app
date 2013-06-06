@@ -36,7 +36,17 @@ seratch.company
 seratch.skills
 ```
 
+### testing support
+
+https://github.com/seratch/devteam-app/blob/master/src/test/scala/devteam/model/ProgrammerSpec.scala
+
+```sh
+sbt test
+```
+
 ### scalikejdbc-gen
+
+Try source code generator.
 
 ```sh
 sbt
