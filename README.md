@@ -29,17 +29,13 @@ val company = sql"select id, name from company where name = ${name}".map(_.toMap
 
 https://github.com/seratch/scalikejdbc/wiki/SQLInterpolation
 
-## Model examples
+## Query DSL Examples
 
-There are some examples under `src/main/scala/devteam/model`. These are simple model example that use Query DSL.
+Query DSL is a DRY and typesafe way to write SQL. There are some examples that effectively use Query DSL under `src/main/scala/devteam/model`. These are simple model example that use Query DSL.
 
 https://github.com/seratch/devteam-app/tree/master/src/main/scala/devteam/model
 
-Try ScalikeJDBC on `sbt console`!
-
-### Query DSL
-
-DRY and typesafe way to write SQL.
+You can use Query DSL directly on `sbt console`:
 
 ```
 val typesafe = withSQL {
@@ -47,7 +43,7 @@ val typesafe = withSQL {
 }.map(Company(c)).single.apply()
 ```
 
-or try prepared models:
+or try prepared model examples:
 
 ```scala
 val pg = Programmer.create("@seratch")
