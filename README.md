@@ -16,17 +16,9 @@ Join us if you're insterested!
 
 https://groups.google.com/group/scalikejdbc-users-group
 
-## Some models which uses ScalikeJDBC Query DSL
+## SQLInterpolation Basic
 
-Source code under `src/main/scala/devteam/model`. These are simple model example that use Query DSL.
-
-https://github.com/seratch/devteam-app/tree/master/src/main/scala/devteam/model
-
-Try ScalikeJDBC on `sbt console`!
-
-### SQLInterpolation Basic
-
-SQLInterpolation simplifies DB access.
+SQLInterpolation simplifies DB access. `sbt console` and try this:
 
 ```scala
 val name = "Typesafe"
@@ -36,6 +28,14 @@ val company = sql"select id, name from company where name = ${name}".map(_.toMap
 - More info
 
 https://github.com/seratch/scalikejdbc/wiki/SQLInterpolation
+
+## Model examples
+
+There are some examples under `src/main/scala/devteam/model`. These are simple model example that use Query DSL.
+
+https://github.com/seratch/devteam-app/tree/master/src/main/scala/devteam/model
+
+Try ScalikeJDBC on `sbt console`!
 
 ### Query DSL
 
@@ -63,7 +63,7 @@ seratch.skills
 
 https://github.com/seratch/scalikejdbc/wiki/Query-DSL-Reference
 
-### Testing Support
+## Testing Support
 
 ScalikeJDBC has powerful testing support. You can use auto-rollback and fixtures with ScalaTest or specs2. Check the following example:
 
@@ -73,7 +73,7 @@ https://github.com/seratch/devteam-app/blob/master/src/test/scala/devteam/model/
 
 https://github.com/seratch/scalikejdbc/wiki/Test-Support
 
-### Source Code Generator
+## Source Code Generator
 
 `scalikejdbc-gen` is a useful sbt plugin to generate Scala code from existing tables. Usage is pretty simple. Just specify table name like this:
 
@@ -85,7 +85,7 @@ sbt "scalikejdbc-gen company"
 
 https://github.com/seratch/scalikejdbc/wiki/Generating-Models
 
-### Typesafe Config Reader
+## Typesafe Config Reader
 
 This is an easy-to-use configuration loader for ScalikeJDBC which reads typesafe config. `DBs.setupAll` loads `src/main/resources/application.conf`. 
 
@@ -93,7 +93,7 @@ This is an easy-to-use configuration loader for ScalikeJDBC which reads typesafe
 
 https://github.com/seratch/scalikejdbc/wiki/Config
 
-### Simple JSON API app (Play2)
+## Simple JSON API app (Play2)
 
 The above models don't depend on any specific web framework. You can re-use them in wether Play2 app, Scalatra app or others.
 
