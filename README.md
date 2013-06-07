@@ -113,7 +113,8 @@ https://github.com/seratch/devteam-app/blob/master/playapp/conf/routes
 
 - More info
 
-The above models don't depend on Play framework. You can re-use them in wether Play2 app, Scalatra app or others.
+https://github.com/seratch/scalikejdbc/wiki/Play-Plugin
+
 
 ## Files
 
