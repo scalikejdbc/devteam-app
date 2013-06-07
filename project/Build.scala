@@ -21,7 +21,7 @@ object DevTeamBuild extends Build {
         "com.github.seratch" %% "scalikejdbc-test"          % "[1.6,)"        % "test",
         "org.specs2"         %% "specs2"                    % "[1.13,)"       % "test"
       )
-    )
+    ) ++ net.virtualvoid.sbt.graph.Plugin.graphSettings
   )
 
   lazy val playapp = {
@@ -36,7 +36,7 @@ object DevTeamBuild extends Build {
       "com.h2database"       %  "h2"                              % "[1.3,)"
     )
     play.Project(appName, appVersion, appDependencies, path = file("playapp")).settings(
-      scalaVersion in ThisBuild := "2.10.1"
+      (net.virtualvoid.sbt.graph.Plugin.graphSettings :+ (scalaVersion in ThisBuild := "2.10.1")):_*
     ).dependsOn(common)
   }
 

@@ -12,3 +12,4 @@ scalikejdbcSettings
 
 scalariformSettings
 
+
