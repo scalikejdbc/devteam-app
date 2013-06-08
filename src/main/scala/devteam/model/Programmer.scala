@@ -33,7 +33,7 @@ case class Programmer(
 
 object Programmer extends SQLSyntaxSupport[Programmer] {
 
-  // If the table name is same as snake_case'd name of this companion object, you don't need to specify tableName explicitly,
+  // If the table name is same as snake_case'd name of this companion object, you don't need to specify tableName explicitly.
   override val tableName = "programmer"
   // By default, column names will be cached from meta data automatically when accessing this table for the first time.
   override val columns = Seq("id", "name", "company_id", "created_timestamp", "deleted_timestamp")
@@ -97,8 +97,9 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
     select
       .from(Programmer as p)
       .leftJoin(Company as c).on(p.companyId, c.id)
-      // since 1.6.3: where.not.in(p.id, select(sqls.distinct(ps.programmerId)).from(ProgrammerSkill as ps))
-      .where.append(sqls"${p.id} not in (select distinct ${ps.programmerId} from ${ProgrammerSkill as ps})").and.append(isNotDeleted)
+      .where
+      .notIn(p.id, select(sqls.distinct(ps.programmerId)).from(ProgrammerSkill as ps))
+      .and.append(isNotDeleted)
       .orderBy(p.id)
   }.map(Programmer(p, c)).list.apply()
 
