@@ -12,7 +12,7 @@ object DevTeamBuild extends Build {
       organization := "com.github.seratch",
       name := "devteam-example-common",
       version := "0.1-SNAPSHOT",
-      scalaVersion := "2.10.1",
+      scalaVersion := "2.10.2",
       resolvers ++= Seq(
         "Sonatype releases" at "http://oss.sonatype.org/content/repositories/releases",
         "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
