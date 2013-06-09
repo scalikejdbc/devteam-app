@@ -180,8 +180,9 @@ https://github.com/seratch/scalikejdbc/wiki/Play-Plugin
 
 ## License
 
+Copyright 2013 ScalikeJDBC committers
+
 Apache License, Version 2.0
 
 http://www.apache.org/licenses/LICENSE-2.0.html
-
 
