@@ -3,7 +3,7 @@ import play.Project._
 
 object DevTeamBuild extends Build {
 
-  lazy val scalikejdbcVersion = "1.6.3-SNAPSHOT"
+  lazy val scalikejdbcVersion = "1.6.2"
 
   lazy val common = Project(
     id = "common",
@@ -13,10 +13,6 @@ object DevTeamBuild extends Build {
       name := "devteam-example-common",
       version := "0.1-SNAPSHOT",
       scalaVersion := "2.10.2",
-      resolvers ++= Seq(
-        "Sonatype releases" at "http://oss.sonatype.org/content/repositories/releases",
-        "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
-      ),
       libraryDependencies ++= Seq(
         "com.github.seratch" %% "scalikejdbc"               % scalikejdbcVersion,
         "com.github.seratch" %% "scalikejdbc-config"        % scalikejdbcVersion,

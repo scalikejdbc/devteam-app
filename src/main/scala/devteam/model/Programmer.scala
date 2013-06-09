@@ -97,8 +97,7 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
     select
       .from(Programmer as p)
       .leftJoin(Company as c).on(p.companyId, c.id)
-      .where
-      .notIn(p.id, select(sqls.distinct(ps.programmerId)).from(ProgrammerSkill as ps))
+      .where.append(sqls"${p.id} not in (select distinct ${ps.programmerId} from ${ProgrammerSkill as ps})")
       .and.append(isNotDeleted)
       .orderBy(p.id)
   }.map(Programmer(p, c)).list.apply()
