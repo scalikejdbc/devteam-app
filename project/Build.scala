@@ -3,7 +3,7 @@ import play.Project._
 
 object DevTeamBuild extends Build {
 
-  lazy val scalikejdbcVersion = "1.6.2"
+  lazy val scalikejdbcVersion = "1.6.3"
 
   lazy val common = Project(
     id = "common",
