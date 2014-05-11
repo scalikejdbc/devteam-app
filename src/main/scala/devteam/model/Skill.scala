@@ -19,15 +19,14 @@ object Skill extends SQLSyntaxSupport[Skill] {
   def apply(s: ResultName[Skill])(rs: WrappedResultSet): Skill = new Skill(
     id = rs.long(s.id),
     name = rs.string(s.name),
-    createdAt = rs.timestamp(s.createdAt).toDateTime,
-    deletedAt = rs.timestampOpt(s.deletedAt).map(_.toDateTime)
+    createdAt = rs.timestamp(s.createdAt).toJodaDateTime,
+    deletedAt = rs.timestampOpt(s.deletedAt).map(_.toJodaDateTime)
   )
 
   def opt(s: SyntaxProvider[Skill])(rs: WrappedResultSet): Option[Skill] = rs.longOpt(s.resultName.id).map(_ => apply(s.resultName)(rs))
 
   val s = Skill.syntax("s")
 
-  private val autoSession = AutoSession
   private val isNotDeleted = sqls.isNull(s.deletedAt)
 
   def find(id: Long)(implicit session: DBSession = autoSession): Option[Skill] = withSQL {

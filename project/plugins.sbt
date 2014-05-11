@@ -1,16 +1,15 @@
-libraryDependencies += "com.h2database" % "h2" % "[1.3,)"
+libraryDependencies += "com.h2database" % "h2" % "1.4.178"
 
-addSbtPlugin("com.github.seratch" %% "scalikejdbc-mapper-generator" % "[1.6,)")
+addSbtPlugin("org.scalikejdbc" %% "scalikejdbc-mapper-generator" % "2.0.0")
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.0.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0")
 
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-logLevel := Level.Warn
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.2.3")
 
-addSbtPlugin("play" % "sbt-plugin" % "2.1.1")
+addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.4")
 
-addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.3")
+addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.6")
 
-addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.1")
-
+scalacOptions ++= Seq("-deprecation", "-language:_", "-unchecked")

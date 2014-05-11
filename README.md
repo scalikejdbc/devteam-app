@@ -1,14 +1,14 @@
 # devteam app
 
-This is a simple ScalikeJDBC demo application. 
+This is a simple ScalikeJDBC demo application.
 
 ## ScalikeJDBC
 
 ScalikeJDBC is A tidy SQL-based DB access library for Scala developers. This library naturally wraps JDBC APIs and provides you easy-to-use APIs.
 
-https://github.com/seratch/scalikejdbc
+https://github.com/scalikejdbc/scalikejdbc
 
-https://github.com/seratch/scalikejdbc/wiki
+http://scalikejdbc.org
 
 ### ScalikeJDBC Users Group
 
@@ -27,13 +27,13 @@ val company = sql"select id, name from company where name = ${name}".map(_.toMap
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/SQLInterpolation
+http://scalikejdbc.org/documentation/sql-interpolation.html
 
 ## Query DSL Examples
 
 Query DSL is a DRY and typesafe way to write SQL. There are some examples that effectively use Query DSL under `src/main/scala/devteam/model`. These are simple model example that use Query DSL.
 
-https://github.com/seratch/devteam-app/tree/master/src/main/scala/devteam/model
+https://github.com/scalikejdbc/devteam-app/tree/master/src/main/scala/devteam/model
 
 You can use Query DSL directly on `sbt console`:
 
@@ -57,37 +57,37 @@ seratch.skills
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/Query-DSL-Reference
+http://scalikejdbc.org/documentation/query-dsl.html
 
 ## Testing Support
 
 ScalikeJDBC has powerful testing support. You can use auto-rollback and fixtures with ScalaTest or specs2. Check the following example:
 
-https://github.com/seratch/devteam-app/blob/master/src/test/scala/devteam/model/ProgrammerSpec.scala
+https://github.com/scalikejdbc/devteam-app/blob/master/src/test/scala/devteam/model/ProgrammerSpec.scala
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/Test-Support
+http://scalikejdbc.org/documentation/testing.html
 
 ## Source Code Generator
 
 `scalikejdbc-gen` is a useful sbt plugin to generate Scala code from existing tables. Usage is pretty simple. Just specify table name like this:
 
 ```scala
-sbt "scalikejdbc-gen company"
+sbt "scalikejdbcGen company"
 ```
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/Generating-Models
+http://scalikejdbc.org/documentation/reverse-engineering.html
 
 ## Typesafe Config Reader
 
-This is an easy-to-use configuration loader for ScalikeJDBC which reads typesafe config. `DBs.setupAll` loads `src/main/resources/application.conf`. 
+This is an easy-to-use configuration loader for ScalikeJDBC which reads typesafe config. `DBs.setupAll` loads `src/main/resources/application.conf`.
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/Config
+http://scalikejdbc.org/documentation/configuration.html
 
 ## Simple JSON API app (Play2)
 
@@ -96,7 +96,7 @@ The above models don't depend on any specific web framework. You can re-use them
 `playapp` project is a pretty simple JSON API server demo app. Try it now:
 
 ```
-sbt 
+sbt
 project playapp
 run
 
@@ -105,15 +105,15 @@ run
 
 - Code
 
-https://github.com/seratch/devteam-app/blob/master/playapp/app/controllers
+https://github.com/scalikejdbc/devteam-app/blob/master/playapp/app/controllers
 
 - Routing
 
-https://github.com/seratch/devteam-app/blob/master/playapp/conf/routes
+https://github.com/scalikejdbc/devteam-app/blob/master/playapp/conf/routes
 
 - More info
 
-https://github.com/seratch/scalikejdbc/wiki/Play-Plugin
+http://scalikejdbc.org/documentation/playframework-support.html
 
 
 ## Files
@@ -180,7 +180,7 @@ https://github.com/seratch/scalikejdbc/wiki/Play-Plugin
 
 ## License
 
-Copyright 2013 ScalikeJDBC committers
+Copyright 2013-2014 ScalikeJDBC committers
 
 Apache License, Version 2.0
 

@@ -21,13 +21,12 @@ object Company extends SQLSyntaxSupport[Company] {
     id = rs.long(c.id),
     name = rs.string(c.name),
     url = rs.stringOpt(c.url),
-    createdAt = rs.timestamp(c.createdAt).toDateTime,
-    deletedAt = rs.timestampOpt(c.deletedAt).map(_.toDateTime)
+    createdAt = rs.timestamp(c.createdAt).toJodaDateTime,
+    deletedAt = rs.timestampOpt(c.deletedAt).map(_.toJodaDateTime)
   )
 
   val c = Company.syntax("c")
 
-  private val autoSession = AutoSession
   private val isNotDeleted = sqls.isNull(c.deletedAt)
 
   def find(id: Long)(implicit session: DBSession = autoSession): Option[Company] = withSQL {

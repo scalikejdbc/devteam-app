@@ -46,8 +46,8 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
     id = rs.long(p.id),
     name = rs.string(p.name),
     companyId = rs.longOpt(p.companyId),
-    createdAt = rs.timestamp(p.createdAt).toDateTime,
-    deletedAt = rs.timestampOpt(p.deletedAt).map(_.toDateTime)
+    createdAt = rs.timestamp(p.createdAt).toJodaDateTime,
+    deletedAt = rs.timestampOpt(p.deletedAt).map(_.toJodaDateTime)
   )
 
   // join query with company table
@@ -61,7 +61,6 @@ object Programmer extends SQLSyntaxSupport[Programmer] {
   val p = Programmer.syntax("p")
   private val (c, s, ps) = (Company.c, Skill.s, ProgrammerSkill.ps)
 
-  private val autoSession = AutoSession
   // reusable part of SQL
   private val isNotDeleted = sqls.isNull(p.deletedAt)
 

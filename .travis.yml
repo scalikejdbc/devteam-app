@@ -1,0 +1,9 @@
+language: scala
+
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+
+script:
+  - sbt common/test playapp/test
+
