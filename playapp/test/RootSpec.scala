@@ -6,15 +6,15 @@ import play.api.test._
 import play.api.test.Helpers._
 
 class RootSpec extends Specification {
-  
+
   "Root" should {
-    
+
     "send 404 on a bad request" in {
       running(FakeApplication()) {
-        route(FakeRequest(GET, "/boum")) must beNone        
+        route(FakeRequest(GET, "/boum")) must beNone
       }
     }
-    
+
     "render /" in {
       running(FakeApplication()) {
         val home = route(FakeRequest(GET, "/")).get
