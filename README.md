@@ -1,4 +1,4 @@
-# devteam app
+# devteam app [![Build Status](https://travis-ci.org/scalikejdbc/devteam-app.svg?branch=master)](https://travis-ci.org/scalikejdbc/devteam-app)
 
 This is a simple ScalikeJDBC demo application.
 
