@@ -1,5 +1,4 @@
 import sbt._, Keys._
-import play.Project._
 
 object DevTeamBuild extends Build {
 
@@ -33,18 +32,19 @@ object DevTeamBuild extends Build {
 
   lazy val playapp = {
     val appName         = "playapp"
-    val appVersion      = "0.1-SNAPSHOT"
-    val scalikejdbcPluginVersion = "2.2.0"
+    val scalikejdbcPluginVersion = "2.3.0"
     val appDependencies = Seq(
       "org.scalikejdbc"      %% "scalikejdbc-play-plugin"         % scalikejdbcPluginVersion,
       "org.scalikejdbc"      %% "scalikejdbc-play-fixture-plugin" % scalikejdbcPluginVersion,
-      "org.json4s"           %% "json4s-ext"                      % "3.2.5",
-      "com.github.tototoshi" %% "play-json4s-native"              % "0.2.0",
-      "com.github.tototoshi" %% "play-flyway"                     % "1.0.3",
+      "org.json4s"           %% "json4s-ext"                      % "3.2.10",
+      "com.github.tototoshi" %% "play-json4s-native"              % "0.3.0",
+      "com.github.tototoshi" %% "play-flyway"                     % "1.1.1",
       "com.h2database"       %  "h2"                              % h2Version
     )
-    play.Project(appName, appVersion, appDependencies, path = file("playapp")).settings(
-      commonSettings ++ net.virtualvoid.sbt.graph.Plugin.graphSettings :_*
+    Project(appName, file("playapp")).enablePlugins(play.PlayScala).settings(
+      commonSettings ++ net.virtualvoid.sbt.graph.Plugin.graphSettings ++ Seq(
+        libraryDependencies ++= appDependencies
+      ) :_*
     ).dependsOn(common)
   }
 
