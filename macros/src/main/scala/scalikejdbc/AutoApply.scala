@@ -2,7 +2,6 @@ package scalikejdbc
 
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
-import scalikejdbc._
 
 object AutoApply {
 
@@ -13,9 +12,8 @@ object AutoApply {
     val ctor = declarations.collectFirst { case m: MethodSymbol if m.isPrimaryConstructor => m }.get
     val params = ctor.paramLists.head
     val constParams = params.map { field => 
-      val name = field.name
-      val returnType = tpe.decl(field.name).typeSignature
-      q"$rs.get($rn.field(${name.decodedName.toString}))"
+      val name = field.name.decodedName.toString
+      q"$rs.get($rn.field($name))"
     }
     c.Expr[A](q"new ${tpe}(..$constParams)")
   }
