@@ -1,3 +1,7 @@
+# IMPORTANT NOTICE
+
+**This sample project is no longer maintained.** Please see [hello-scalikejdbc](https://github.com/scalikejdbc/hello-scalikejdbc) instead.
+
 # devteam app [![Build Status](https://travis-ci.org/scalikejdbc/devteam-app.svg?branch=master)](https://travis-ci.org/scalikejdbc/devteam-app)
 
 This is a simple ScalikeJDBC demo application.
